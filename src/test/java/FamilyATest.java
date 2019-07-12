@@ -62,4 +62,18 @@ public class FamilyATest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testABabysitterForFamilyAMakes90DollarsForWorking2HoursBefore11PMAnd2HoursAfter11PM() {
+        LocalDateTime julyTwelfth2019At9PM = LocalDateTime.of(2019, Month.JULY, 12, 21, 0);
+        LocalDateTime julyThirteenth2019At1AM = LocalDateTime.of(2019, Month.JULY, 13, 1, 0);
+        FamilyA familyA = new FamilyA();
+        familyA.startTime(julyTwelfth2019At9PM);
+        familyA.endTime(julyThirteenth2019At1AM);
+        try {
+            assertEquals(70, familyA.getPay());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
