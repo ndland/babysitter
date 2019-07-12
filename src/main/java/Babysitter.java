@@ -11,8 +11,16 @@ public class Babysitter {
         this.startTime = startTime;
     }
 
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
     public void endTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
     protected void isInWorkingHours() throws Exception {
