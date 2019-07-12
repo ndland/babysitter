@@ -24,6 +24,17 @@ public class BabysitterPayTest {
     public void testABabySitterDoesNotWorkPriorTo5PM() {
         try {
             babysitterPay.startTime(LocalTime.parse("14:00"));
+            fail();
+        } catch (Exception exception) {
+            assertTrue(exception.getMessage().contains("Outside of working hours."));
+        }
+    }
+
+    @Test
+    public void testABabySitterDoesNotWorkAfter4AM() {
+        try {
+            babysitterPay.endTime(LocalTime.parse("05:00"));
+            fail();
         } catch (Exception exception) {
             assertTrue(exception.getMessage().contains("Outside of working hours."));
         }
