@@ -10,7 +10,11 @@ public class BabysitterPay {
         this.family = family;
     }
 
-    public void startTime(LocalTime startTime) {
+    public void startTime(LocalTime startTime) throws Exception {
+        LocalTime fiveOClock = LocalTime.parse("17:00");
+        if (fiveOClock.compareTo(startTime) > 0) {
+            throw new Exception("Outside of working hours.");
+        }
         this.startTime = startTime;
     }
 
