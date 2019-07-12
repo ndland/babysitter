@@ -24,7 +24,7 @@ public class Babysitter {
     }
 
     protected void isInWorkingHours() throws Exception {
-        if ((fourOClockAM < endTime.getHour() && endTime.getHour() < fiveOClockPM) ||
+        if ((fourOClockAM < endTime.getHour() && endTime.getHour() < fiveOClockPM) &&
         (fiveOClockPM > startTime.getHour() && startTime.getHour() > fourOClockAM)) {
             throw new Exception("Outside of working hours.");
         }
