@@ -16,6 +16,11 @@ public class FamilyB extends Babysitter {
             totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
         }
 
+        if (getStartTime().toLocalTime().compareTo(LocalTime.of(22, 0)) >= 0
+                    && getStartTime().toLocalTime().compareTo(LocalTime.of(23, 59)) <= 0) {
+            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BETWEEN_10PM_AND_12AM;
+        }
+
 //        if (isStartTimeOrEndTimeEqualToMidnight()) {
 //            totalPay += (24 + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
 //        }
@@ -35,7 +40,7 @@ public class FamilyB extends Babysitter {
 
     private boolean isStartTimeBetween5PMAnd10PM() {
         return getStartTime().toLocalTime().compareTo(LocalTime.of(17, 0)) >= 0
-                && getStartTime().toLocalTime().compareTo(LocalTime.of(22, 0)) <= 0;
+                && getStartTime().toLocalTime().compareTo(LocalTime.of(22, 0)) < 0;
     }
 
     private boolean isStartTimeBetween10PMAndMidnight() {
