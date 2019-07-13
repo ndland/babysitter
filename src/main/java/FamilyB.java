@@ -10,18 +10,30 @@ public class FamilyB extends Babysitter {
     public double getPay() throws Exception {
         super.isInWorkingHours();
 
-        if (getStartTime().toLocalTime().equals(LocalTime.MIDNIGHT) || getEndTime().toLocalTime().equals(LocalTime.MIDNIGHT)) {
+        if (isStartTimeOrEndTimeEqualToMidnight()) {
             return (24 + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
         }
 
-        if (getStartTime().isAfter(getStartTime().toLocalDate().atStartOfDay()) && getStartTime().isBefore(getStartTime().toLocalDate().atStartOfDay().plusHours(4))) {
+        if (isStartTimeAfterMidnightAndBefore4AM()) {
             return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * 16.00;
         }
 
-        if (getStartTime().toLocalTime().compareTo(TEN_PM) >= 0) {
+        if (isStartTimeBetween10PMAndMidnight()) {
             return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BETWEEN_10PM_AND_12AM;
         }
 
         return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
+    }
+
+    private boolean isStartTimeBetween10PMAndMidnight() {
+        return getStartTime().toLocalTime().compareTo(TEN_PM) >= 0;
+    }
+
+    private boolean isStartTimeOrEndTimeEqualToMidnight() {
+        return getStartTime().toLocalTime().equals(LocalTime.MIDNIGHT) || getEndTime().toLocalTime().equals(LocalTime.MIDNIGHT);
+    }
+
+    private boolean isStartTimeAfterMidnightAndBefore4AM() {
+        return getStartTime().isAfter(getStartTime().toLocalDate().atStartOfDay()) && getStartTime().isBefore(getStartTime().toLocalDate().atStartOfDay().plusHours(4));
     }
 }
