@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class FamilyATest {
 
@@ -17,7 +18,7 @@ public class FamilyATest {
         try {
             assertEquals(15.00, familyA.getPay());
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
     }
 
@@ -31,7 +32,7 @@ public class FamilyATest {
         try {
             assertEquals(45.00, familyA.getPay());
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
     }
 
@@ -45,7 +46,7 @@ public class FamilyATest {
         try {
             assertEquals(35, familyA.getPay());
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
     }
 
@@ -59,7 +60,7 @@ public class FamilyATest {
         try {
             assertEquals(190, familyA.getPay());
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
     }
 
@@ -73,7 +74,7 @@ public class FamilyATest {
         try {
             assertEquals(70, familyA.getPay());
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
     }
 }
