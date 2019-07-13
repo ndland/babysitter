@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -76,6 +77,19 @@ public class FamilyBTest {
         familyB.endTime(julyTwelfth2019At2AM);
         try {
             assertEquals(16.00, familyB.getPay());
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testABabysitterForFamilyBMakes44DollarsForWorkingFrom9PMTo1AM() {
+        LocalDateTime julyEleventhAt9PM = LocalDateTime.of(2019, Month.JULY, 11, 21, 0);
+        LocalDateTime julyTwelfth2019At1AM= LocalDateTime.of(2019, Month.JULY, 12, 1, 0);
+        familyB.startTime(julyEleventhAt9PM);
+        familyB.endTime(julyTwelfth2019At1AM);
+        try {
+            assertEquals(44.00, familyB.getPay());
         } catch (Exception e) {
             fail();
         }

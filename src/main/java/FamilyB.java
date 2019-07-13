@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class FamilyB extends Babysitter {
@@ -6,23 +7,35 @@ public class FamilyB extends Babysitter {
     private static final double BASE_PAY_BEFORE_10PM = 12.0;
     private static final double PAY_BETWEEN_10PM_AND_12AM = 8.0;
     private static final LocalTime TEN_PM = LocalTime.of(22, 0);
+    private double totalPay = 0.0;
 
     public double getPay() throws Exception {
         super.isInWorkingHours();
 
-        if (isStartTimeOrEndTimeEqualToMidnight()) {
-            return (24 + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
+        if (isStartTimeBetween5PMAnd10PM()) {
+            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
         }
 
-        if (isStartTimeAfterMidnightAndBefore4AM()) {
-            return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * 16.00;
-        }
+//        if (isStartTimeOrEndTimeEqualToMidnight()) {
+//            totalPay += (24 + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
+//        }
+//
+//        if (isStartTimeAfterMidnightAndBefore4AM()) {
+//            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * 16.00;
+//        }
+//
+//        if (isStartTimeBetween10PMAndMidnight()) {
+//            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BETWEEN_10PM_AND_12AM;
+//        }
+//
+//        totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
+//
+        return totalPay;
+    }
 
-        if (isStartTimeBetween10PMAndMidnight()) {
-            return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BETWEEN_10PM_AND_12AM;
-        }
-
-        return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
+    private boolean isStartTimeBetween5PMAnd10PM() {
+        return getStartTime().toLocalTime().compareTo(LocalTime.of(17, 0)) >= 0
+                && getStartTime().toLocalTime().compareTo(LocalTime.of(22, 0)) <= 0;
     }
 
     private boolean isStartTimeBetween10PMAndMidnight() {
