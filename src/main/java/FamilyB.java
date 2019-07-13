@@ -10,8 +10,12 @@ public class FamilyB extends Babysitter {
     public double getPay() throws Exception {
         super.isInWorkingHours();
 
-        if (getStartTime().toLocalTime().compareTo(LocalTime.MIDNIGHT) == 0 || getEndTime().toLocalTime().compareTo(LocalTime.MIDNIGHT) == 0) {
+        if (getStartTime().toLocalTime().equals(LocalTime.MIDNIGHT) || getEndTime().toLocalTime().equals(LocalTime.MIDNIGHT)) {
             return (24 + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
+        }
+
+        if (getStartTime().isAfter(getStartTime().toLocalDate().atStartOfDay()) && getStartTime().isBefore(getStartTime().toLocalDate().atStartOfDay().plusHours(4))) {
+            return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * 16.00;
         }
 
         if (getStartTime().toLocalTime().compareTo(TEN_PM) >= 0) {
