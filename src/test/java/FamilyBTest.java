@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -8,11 +9,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class FamilyBTest {
 
+    private FamilyB familyB;
+
+    @BeforeEach
+    public void setUp() {
+        familyB = new FamilyB();
+    }
+
     @Test
     public void testABabysitterForFamilyBMakes12DollarsForOneHourOfWorkBefore10PM() {
         LocalDateTime julyTwelfth2019At5PM = LocalDateTime.of(2019, Month.JULY, 12, 17, 0);
         LocalDateTime julyTwelfth2019At6PM = LocalDateTime.of(2019, Month.JULY, 12, 18, 0);
-        FamilyB familyB = new FamilyB();
         familyB.startTime(julyTwelfth2019At5PM);
         familyB.endTime(julyTwelfth2019At6PM);
         try {
@@ -26,7 +33,6 @@ public class FamilyBTest {
     public void testABabysitterForFamilyBMakes36DollarsForWorking3Hours() {
         LocalDateTime julyTwelfth2019At5PM = LocalDateTime.of(2019, Month.JULY, 12, 17, 0);
         LocalDateTime julyTwelfth2019At8PM = LocalDateTime.of(2019, Month.JULY, 12, 20, 0);
-        FamilyB familyB = new FamilyB();
         familyB.startTime(julyTwelfth2019At5PM);
         familyB.endTime(julyTwelfth2019At8PM);
         try {
@@ -40,7 +46,6 @@ public class FamilyBTest {
     public void testABabysitterForFamilyBMakes8DollarsForWorking1HourBetween8PMAnd10PM() {
         LocalDateTime julyTwelfth2019At10PM = LocalDateTime.of(2019, Month.JULY, 12, 22, 0);
         LocalDateTime julyTwelfth2019At11PM = LocalDateTime.of(2019, Month.JULY, 12, 23, 0);
-        FamilyB familyB = new FamilyB();
         familyB.startTime(julyTwelfth2019At10PM);
         familyB.endTime(julyTwelfth2019At11PM);
         try {
