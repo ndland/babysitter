@@ -2,9 +2,9 @@ import java.time.LocalTime;
 
 public class FamilyC extends Babysitter {
 
-    public static final LocalTime NINE_PM = LocalTime.of(21, 0);
-    public static final double PAY_AFTER_9PM = 21.0;
-    public static final double BASE_PAY = 15.00;
+    private static final LocalTime NINE_PM = LocalTime.of(21, 0);
+    private static final double PAY_AFTER_9PM = 21.0;
+    private static final double BASE_PAY = 15.00;
     private double totalPay = 0.0;
 
     public double calculatePay() throws Exception {
