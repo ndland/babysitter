@@ -13,10 +13,9 @@ public class FamilyB extends Babysitter {
         super.isInWorkingHours();
 
         if (didWorkThroughMidnight()) {
-            totalPay += calculateHoursBetween(getStartTime().toLocalTime(), TEN_PM) * BASE_PAY_BEFORE_10PM
+            return calculateHoursBetween(getStartTime().toLocalTime(), TEN_PM) * BASE_PAY_BEFORE_10PM
                     + (HOURS_IN_A_DAY + calculateHoursBetween(TEN_PM, LocalTime.MIDNIGHT)) * PAY_BETWEEN_10PM_AND_12AM
                     + calculateHoursBetween(LocalTime.MIDNIGHT, getEndTime().toLocalTime()) * PAY_AFTER_MIDNIGHT;
-            return totalPay;
         }
         if (isStartTimeBetween5PMAnd10PM()) {
             totalPay += calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
