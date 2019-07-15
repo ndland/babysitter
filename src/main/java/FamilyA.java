@@ -19,7 +19,7 @@ public class FamilyA extends Babysitter {
             totalPay += calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BEFORE_11_PM;
         }
 
-        if (didWorkAfter9PM()) {
+        if (didWorkAfter11PM()) {
             return calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_AFTER_11_PM;
 
         }
@@ -30,7 +30,7 @@ public class FamilyA extends Babysitter {
         return getStartTime().toLocalTime().compareTo(ELEVEN_PM) <= 0;
     }
 
-    private boolean didWorkAfter9PM() {
-        return getEndTime().toLocalTime().isAfter(ELEVEN_PM);
+    private boolean didWorkAfter11PM() {
+        return getEndTime().toLocalTime().compareTo(ELEVEN_PM) >= 0;
     }
 }
