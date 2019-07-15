@@ -11,7 +11,7 @@ public class FamilyC extends Babysitter {
     public double getPay() {
         if (didWorkThroughMidnight()) {
             return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), NINE_PM) * PAY_AFTER_9PM
-                    + (24 + ChronoUnit.HOURS.between(NINE_PM, getEndTime().toLocalTime())) * BASE_PAY;
+                    + (HOURS_IN_A_DAY + ChronoUnit.HOURS.between(NINE_PM, getEndTime().toLocalTime())) * BASE_PAY;
         }
 
         if (isStartTime9PMOrBefore()) {
@@ -22,11 +22,6 @@ public class FamilyC extends Babysitter {
             return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY;
         }
         return totalPay;
-    }
-
-    private boolean didWorkThroughMidnight() {
-        return getEndTime().isAfter(getEndTime().toLocalDate().atStartOfDay())
-                && getStartTime().isBefore(getEndTime().toLocalDate().atStartOfDay());
     }
 
     private boolean isStartTime9PMOrBefore() {

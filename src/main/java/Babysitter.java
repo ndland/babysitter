@@ -2,6 +2,7 @@ import java.time.LocalDateTime;
 
 public class Babysitter {
 
+    protected int HOURS_IN_A_DAY = 24;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int fiveOClockPM = 17;
@@ -29,5 +30,10 @@ public class Babysitter {
             throw new Exception("Outside of working hours.");
         }
         if (startTime.isAfter(endTime)) { throw new Exception("Can't end work before you start."); }
+    }
+
+    protected boolean didWorkThroughMidnight() {
+        return getEndTime().isAfter(getEndTime().toLocalDate().atStartOfDay())
+                && getStartTime().isBefore(getEndTime().toLocalDate().atStartOfDay());
     }
 }

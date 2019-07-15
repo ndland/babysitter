@@ -15,18 +15,17 @@ public class FamilyB extends Babysitter {
 
         if (didWorkThroughMidnight()) {
             totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), TEN_PM) * BASE_PAY_BEFORE_10PM
-                    + (24 + ChronoUnit.HOURS.between(TEN_PM, LocalTime.MIDNIGHT)) * PAY_BETWEEN_10PM_AND_12AM
+                    + (HOURS_IN_A_DAY + ChronoUnit.HOURS.between(TEN_PM, LocalTime.MIDNIGHT)) * PAY_BETWEEN_10PM_AND_12AM
                     + ChronoUnit.HOURS.between(LocalTime.MIDNIGHT, getEndTime().toLocalTime()) * PAY_AFTER_MIDNIGHT;
             return totalPay;
         }
-
         if (isStartTimeBetween5PMAnd10PM()) {
             totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
         }
 
         if (isStartTimeBetween10PMand12AM()) {
             if (isStartTimeOrEndTimeEqualToMidnight()) {
-                return (24 + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
+                return (HOURS_IN_A_DAY + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
             }
             totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BETWEEN_10PM_AND_12AM;
         }
@@ -36,11 +35,6 @@ public class FamilyB extends Babysitter {
         }
 
         return totalPay;
-    }
-
-    private boolean didWorkThroughMidnight() {
-        return getEndTime().isAfter(getEndTime().toLocalDate().atStartOfDay())
-                && getStartTime().isBefore(getEndTime().toLocalDate().atStartOfDay());
     }
 
     private boolean isStartTimeBetween10PMand12AM() {
@@ -59,6 +53,7 @@ public class FamilyB extends Babysitter {
     }
 
     private boolean isStartTimeAfterMidnightAndBefore4AM() {
-        return getStartTime().isAfter(getStartTime().toLocalDate().atStartOfDay()) && getStartTime().isBefore(getStartTime().toLocalDate().atStartOfDay().plusHours(4));
+        return getStartTime().isAfter(getStartTime().toLocalDate().atStartOfDay())
+                && getStartTime().isBefore(getStartTime().toLocalDate().atStartOfDay().plusHours(4));
     }
 }
