@@ -63,4 +63,18 @@ public class FamilyCTest {
             fail();
         }
     }
+
+    @Test
+    public void aBabysitterMakes189DollarsForWorkingAFullShift() {
+        FamilyC familyC = new FamilyC();
+        LocalDateTime julyTwelfth2019At5PM = LocalDateTime.of(2019, Month.JULY, 12, 17, 0);
+        LocalDateTime julyThirteenthAt4AM = LocalDateTime.of(2019, Month.JULY, 13, 4, 0);
+        familyC.startTime(julyTwelfth2019At5PM);
+        familyC.endTime(julyThirteenthAt4AM);
+        try {
+            assertEquals(189.00, familyC.getPay());
+        } catch (Exception e) {
+            fail();
+        }
+    }
 }
