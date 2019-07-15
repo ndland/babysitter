@@ -23,7 +23,7 @@ public class FamilyBTest {
         familyB.startTime(julyTwelfth2019At5PM);
         familyB.endTime(julyTwelfth2019At6PM);
         try {
-            assertEquals(12.00, familyB.getPay());
+            assertEquals(12.00, familyB.calculatePay());
         } catch (Exception e) {
             fail();
         }
@@ -36,7 +36,7 @@ public class FamilyBTest {
         familyB.startTime(julyTwelfth2019At5PM);
         familyB.endTime(julyTwelfth2019At8PM);
         try {
-            assertEquals(36.00, familyB.getPay());
+            assertEquals(36.00, familyB.calculatePay());
         } catch (Exception e) {
             fail();
         }
@@ -49,7 +49,7 @@ public class FamilyBTest {
         familyB.startTime(julyTwelfth2019At10PM);
         familyB.endTime(julyTwelfth2019At11PM);
         try {
-            assertEquals(8.00, familyB.getPay());
+            assertEquals(8.00, familyB.calculatePay());
         } catch (Exception e) {
             fail();
         }
@@ -62,7 +62,7 @@ public class FamilyBTest {
         familyB.startTime(julyTwelfth2019At10PM);
         familyB.endTime(julyThirteenth2019At12AM);
         try {
-            assertEquals(16.00, familyB.getPay());
+            assertEquals(16.00, familyB.calculatePay());
         } catch (Exception e) {
             fail();
         }
@@ -75,7 +75,7 @@ public class FamilyBTest {
         familyB.startTime(julyTwelfth2019At1AM);
         familyB.endTime(julyTwelfth2019At2AM);
         try {
-            assertEquals(16.00, familyB.getPay());
+            assertEquals(16.00, familyB.calculatePay());
         } catch (Exception e) {
             fail();
         }
@@ -88,7 +88,7 @@ public class FamilyBTest {
         familyB.startTime(julyEleventhAt9PM);
         familyB.endTime(julyTwelfth2019At1AM);
         try {
-            assertEquals(44.00, familyB.getPay());
+            assertEquals(44.00, familyB.calculatePay());
         } catch (Exception e) {
             fail();
         }

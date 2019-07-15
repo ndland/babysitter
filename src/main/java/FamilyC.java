@@ -7,7 +7,7 @@ public class FamilyC extends Babysitter {
     public static final double BASE_PAY = 15.00;
     private double totalPay = 0.0;
 
-    public double getPay() throws Exception {
+    public double calculatePay() throws Exception {
         super.isInWorkingHours();
 
         if (didWorkThroughMidnight()) {

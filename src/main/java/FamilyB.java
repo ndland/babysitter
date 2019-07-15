@@ -9,7 +9,7 @@ public class FamilyB extends Babysitter {
     private static final LocalTime FIVE_PM = LocalTime.of(17, 0);
     private double totalPay = 0.0;
 
-    public double getPay() throws Exception {
+    public double calculatePay() throws Exception {
         super.isInWorkingHours();
 
         if (didWorkThroughMidnight()) {
