@@ -44,7 +44,7 @@ public class Babysitter {
         }
     }
 
-    protected long calculateHoursBetween(LocalTime localTime, LocalTime ninePm) {
-        return ChronoUnit.HOURS.between(localTime, ninePm);
+    protected long calculateHoursBetween(LocalTime startTime, LocalTime endTime) {
+        return ChronoUnit.HOURS.between(startTime, endTime);
     }
 }
