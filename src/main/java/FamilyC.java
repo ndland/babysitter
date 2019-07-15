@@ -8,18 +8,20 @@ public class FamilyC extends Babysitter {
     public static final double BASE_PAY = 15.00;
     private double totalPay = 0.0;
 
-    public double getPay() {
+    public double getPay() throws Exception {
+        super.isInWorkingHours();
+
         if (didWorkThroughMidnight()) {
-            return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), NINE_PM) * PAY_AFTER_9PM
-                    + (HOURS_IN_A_DAY + ChronoUnit.HOURS.between(NINE_PM, getEndTime().toLocalTime())) * BASE_PAY;
+            return calculateHoursBetween(getStartTime().toLocalTime(), NINE_PM) * PAY_AFTER_9PM
+                    + (HOURS_IN_A_DAY + calculateHoursBetween(NINE_PM, getEndTime().toLocalTime())) * BASE_PAY;
         }
 
         if (isStartTime9PMOrBefore()) {
-            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_AFTER_9PM;
+            totalPay += calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_AFTER_9PM;
         }
 
         if (didWorkAfter9PM()) {
-            return ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY;
+            return calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY;
         }
         return totalPay;
     }

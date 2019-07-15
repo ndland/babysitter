@@ -1,12 +1,14 @@
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Babysitter {
 
     protected int HOURS_IN_A_DAY = 24;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private int fiveOClockPM = 17;
-    private int fourOClockAM = 4;
+    private int FIVE_PM = 17;
+    private int FOUR_AM = 4;
 
     public void startTime(LocalDateTime startTime) {
         this.startTime = startTime;
@@ -25,8 +27,8 @@ public class Babysitter {
     }
 
     protected void isInWorkingHours() throws Exception {
-        if ((fourOClockAM < endTime.getHour() && endTime.getHour() < fiveOClockPM) &&
-        (fiveOClockPM > startTime.getHour() && startTime.getHour() > fourOClockAM)) {
+        if ((FOUR_AM < endTime.getHour() && endTime.getHour() < FIVE_PM) &&
+        (FIVE_PM > startTime.getHour() && startTime.getHour() > FOUR_AM)) {
             throw new Exception("Outside of working hours.");
         }
         if (startTime.isAfter(endTime)) { throw new Exception("Can't end work before you start."); }
@@ -35,5 +37,9 @@ public class Babysitter {
     protected boolean didWorkThroughMidnight() {
         return getEndTime().isAfter(getEndTime().toLocalDate().atStartOfDay())
                 && getStartTime().isBefore(getEndTime().toLocalDate().atStartOfDay());
+    }
+
+    protected long calculateHoursBetween(LocalTime localTime, LocalTime ninePm) {
+        return ChronoUnit.HOURS.between(localTime, ninePm);
     }
 }

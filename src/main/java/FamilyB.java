@@ -14,24 +14,24 @@ public class FamilyB extends Babysitter {
         super.isInWorkingHours();
 
         if (didWorkThroughMidnight()) {
-            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), TEN_PM) * BASE_PAY_BEFORE_10PM
-                    + (HOURS_IN_A_DAY + ChronoUnit.HOURS.between(TEN_PM, LocalTime.MIDNIGHT)) * PAY_BETWEEN_10PM_AND_12AM
-                    + ChronoUnit.HOURS.between(LocalTime.MIDNIGHT, getEndTime().toLocalTime()) * PAY_AFTER_MIDNIGHT;
+            totalPay += calculateHoursBetween(getStartTime().toLocalTime(), TEN_PM) * BASE_PAY_BEFORE_10PM
+                    + (HOURS_IN_A_DAY + calculateHoursBetween(TEN_PM, LocalTime.MIDNIGHT)) * PAY_BETWEEN_10PM_AND_12AM
+                    + calculateHoursBetween(LocalTime.MIDNIGHT, getEndTime().toLocalTime()) * PAY_AFTER_MIDNIGHT;
             return totalPay;
         }
         if (isStartTimeBetween5PMAnd10PM()) {
-            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
+            totalPay += calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * BASE_PAY_BEFORE_10PM;
         }
 
         if (isStartTimeBetween10PMand12AM()) {
             if (isStartTimeOrEndTimeEqualToMidnight()) {
-                return (HOURS_IN_A_DAY + ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
+                return (HOURS_IN_A_DAY + calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime())) * PAY_BETWEEN_10PM_AND_12AM;
             }
-            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BETWEEN_10PM_AND_12AM;
+            totalPay += calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_BETWEEN_10PM_AND_12AM;
         }
 
         if (isStartTimeAfterMidnightAndBefore4AM()) {
-            totalPay += ChronoUnit.HOURS.between(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_AFTER_MIDNIGHT;
+            totalPay += calculateHoursBetween(getStartTime().toLocalTime(), getEndTime().toLocalTime()) * PAY_AFTER_MIDNIGHT;
         }
 
         return totalPay;
