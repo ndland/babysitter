@@ -65,7 +65,7 @@ public class FamilyATest {
     }
 
     @Test
-    public void testABabysitterForFamilyAMakes90DollarsForWorking2HoursBefore11PMAnd2HoursAfter11PM() {
+    public void testABabysitterForFamilyAMakes70DollarsForWorking2HoursBefore11PMAnd2HoursAfter11PM() {
         LocalDateTime julyTwelfth2019At9PM = LocalDateTime.of(2019, Month.JULY, 12, 21, 0);
         LocalDateTime julyThirteenth2019At1AM = LocalDateTime.of(2019, Month.JULY, 13, 1, 0);
         FamilyA familyA = new FamilyA();
