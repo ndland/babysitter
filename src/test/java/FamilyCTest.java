@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -8,9 +9,15 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class FamilyCTest {
 
+    private FamilyC familyC;
+
+    @BeforeEach
+    public void setUp() {
+        familyC = new FamilyC();
+    }
+
     @Test
     public void aBabysitterMakes21DollarsForOneHourOfWorkBefore9PM() {
-        FamilyC familyC = new FamilyC();
         LocalDateTime julyTwelfth2019At5PM = LocalDateTime.of(2019, Month.JULY, 12, 17, 0);
         LocalDateTime julyTwelfth2019At6PM = LocalDateTime.of(2019, Month.JULY, 12, 18, 0);
         familyC.startTime(julyTwelfth2019At5PM);
@@ -24,7 +31,6 @@ public class FamilyCTest {
 
     @Test
     public void aBabysitterMakes96DollarsForWorkingBeforeBefore9PM() {
-        FamilyC familyC = new FamilyC();
         LocalDateTime julyTwelfth2019At5PM = LocalDateTime.of(2019, Month.JULY, 12, 17, 0);
         LocalDateTime julyTwelfth2019At9PM = LocalDateTime.of(2019, Month.JULY, 12, 21, 0);
         familyC.startTime(julyTwelfth2019At5PM);
@@ -38,7 +44,6 @@ public class FamilyCTest {
 
     @Test
     public void aBabysitterMakes15DollarsForWorkingOneHourAfter9PM() {
-        FamilyC familyC = new FamilyC();
         LocalDateTime julyTwelfth2019At9PM = LocalDateTime.of(2019, Month.JULY, 12, 21, 0);
         LocalDateTime julyTwelfth2019At10PM = LocalDateTime.of(2019, Month.JULY, 12, 22, 0);
         familyC.startTime(julyTwelfth2019At9PM);
@@ -52,7 +57,6 @@ public class FamilyCTest {
 
     @Test
     public void aBabysitterMakes105DollarsForWorkingFrom9PMTo4AM() {
-        FamilyC familyC = new FamilyC();
         LocalDateTime julyTwelfth2019At9PM = LocalDateTime.of(2019, Month.JULY, 12, 21, 0);
         LocalDateTime julyThirteenthAt4AM = LocalDateTime.of(2019, Month.JULY, 13, 4, 0);
         familyC.startTime(julyTwelfth2019At9PM);
@@ -66,7 +70,6 @@ public class FamilyCTest {
 
     @Test
     public void aBabysitterMakes189DollarsForWorkingAFullShift() {
-        FamilyC familyC = new FamilyC();
         LocalDateTime julyTwelfth2019At5PM = LocalDateTime.of(2019, Month.JULY, 12, 17, 0);
         LocalDateTime julyThirteenthAt4AM = LocalDateTime.of(2019, Month.JULY, 13, 4, 0);
         familyC.startTime(julyTwelfth2019At5PM);
