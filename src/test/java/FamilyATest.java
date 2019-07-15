@@ -38,10 +38,10 @@ public class FamilyATest {
 
     @Test
     public void testABabysitterForFamilyAMakes35DollarsForWorking1HourBefore11PMAnd1HourAfter11PM() {
-        LocalDateTime julyTwelfth2019At11PM = LocalDateTime.of(2019, Month.JULY, 12, 23, 0);
+        LocalDateTime julyTwelfth2019At10PM = LocalDateTime.of(2019, Month.JULY, 12, 22, 0);
         LocalDateTime julyThirteenth2019At12AM = LocalDateTime.of(2019, Month.JULY, 13, 0, 0);
         FamilyA familyA = new FamilyA();
-        familyA.startTime(julyTwelfth2019At11PM);
+        familyA.startTime(julyTwelfth2019At10PM);
         familyA.endTime(julyThirteenth2019At12AM);
         try {
             assertEquals(35, familyA.getPay());

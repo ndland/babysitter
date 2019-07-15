@@ -7,8 +7,8 @@ public class Babysitter {
     protected int HOURS_IN_A_DAY = 24;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private int FIVE_PM = 17;
-    private int FOUR_AM = 4;
+    private static final int FIVE_PM = 17;
+    private static final int FOUR_AM = 4;
 
     public void startTime(LocalDateTime startTime) {
         this.startTime = startTime;
@@ -35,8 +35,13 @@ public class Babysitter {
     }
 
     protected boolean didWorkThroughMidnight() {
-        return getEndTime().isAfter(getEndTime().toLocalDate().atStartOfDay())
-                && getStartTime().isBefore(getEndTime().toLocalDate().atStartOfDay());
+        if (getStartTime().toLocalTime().equals(LocalTime.MIDNIGHT)
+                || getEndTime().toLocalTime().equals(LocalTime.MIDNIGHT)) {
+            return true;
+        } else {
+            return getEndTime().isAfter(getEndTime().toLocalDate().atStartOfDay())
+                    && getStartTime().isBefore(getEndTime().toLocalDate().atStartOfDay());
+        }
     }
 
     protected long calculateHoursBetween(LocalTime localTime, LocalTime ninePm) {
